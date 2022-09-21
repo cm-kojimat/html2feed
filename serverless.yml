@@ -1,0 +1,129 @@
+service: html2feed
+frameworkVersion: "3"
+
+package:
+  patterns:
+    - "!node_modules/**"
+    - "!.venv/**"
+    - "!.*"
+
+plugins:
+  - serverless-prune-plugin
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerImage: public.ecr.aws/sam/build-python3.9:latest
+    dockerizePip: true
+    usePoetry: true
+    layer: true
+
+provider:
+  name: aws
+  runtime: python3.9
+  tracing:
+    lambda: true
+    apiGateway: true
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "Fn::GetAtt": [FeedItem, Arn]
+            - "Fn::GetAtt": [FeedConfig, Arn]
+  environment:
+    LOG_LEVEL: DEBUG
+    FEED_ITEM_TABLE:
+      Ref: FeedItem
+    FEED_CONFIG_TABLE:
+      Ref: FeedConfig
+  httpApi:
+    authorizers:
+      baseAuthorizer:
+        type: jwt
+        identitySource: $request.header.Authorization
+        issuerUrl: { Fn::GetAtt: [UserPool, ProviderURL] }
+        audience:
+          - Ref: UserPoolClient
+
+functions:
+  feeds_by_id:
+    handler: src/handlers/feeds_by_id.main
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    events:
+      - httpApi:
+          path: /feeds/{feed_id}
+          method: GET
+    environment:
+      POWERTOOLS_SERVICE_NAME: feeds_by_id
+
+  feeds_by_query_params:
+    handler: src/handlers/feeds_by_query_params.main
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    events:
+      - httpApi:
+          path: /feeds/query_params
+          method: GET
+          authorizer:
+            name: baseAuthorizer
+    environment:
+      POWERTOOLS_SERVICE_NAME: feeds_by_query_params
+
+  create_feed:
+    handler: src/handlers/create_feed.main
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    events:
+      - httpApi:
+          path: /feeds
+          method: POST
+          authorizer:
+            name: baseAuthorizer
+    environment:
+      POWERTOOLS_SERVICE_NAME: create_feed
+
+resources:
+  Resources:
+    FeedConfig:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    FeedItem:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: url
+            AttributeType: S
+        KeySchema:
+          - AttributeName: url
+            KeyType: HASH
+        TimeToLiveSpecification:
+          Enabled: true
+          AttributeName: expired_at
+    UserPool:
+      Type: AWS::Cognito::UserPool
+    UserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        UserPoolId: { Ref: UserPool }
+        ExplicitAuthFlows:
+          - ALLOW_ADMIN_USER_PASSWORD_AUTH
+          - ALLOW_USER_PASSWORD_AUTH
+          - ALLOW_REFRESH_TOKEN_AUTH
