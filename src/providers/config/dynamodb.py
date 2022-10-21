@@ -14,11 +14,11 @@ class ConfigProvider(ConfigProviderInterface):
     def __init__(self, table: Table):
         self.table = table
 
-    def get(self, id: UUID) -> FeedConfig:
-        resp = self.table.get_item(Key={"id": str(id)})
+    def get(self, feed_id: UUID) -> FeedConfig:
+        resp = self.table.get_item(Key={"id": str(feed_id)})
         item = resp["Item"]
         return FeedConfig(
-            id=id,
+            feed_id=feed_id,
             url=item["url"],
             query=item["query"],
             title_query=item["title_query"],
@@ -31,7 +31,7 @@ class ConfigProvider(ConfigProviderInterface):
     def create(self, config: FeedConfig):
         self.table.put_item(
             Item={
-                "id": str(config.id),
+                "id": str(config.feed_id),
                 "url": config.url,
                 "query": config.query,
                 "title_query": config.title_query,

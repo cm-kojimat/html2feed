@@ -32,13 +32,13 @@ def generate_feed(
 
     soup = BeautifulSoup(fetch_provider.fetch(url), "lxml")
 
-    title = soup.title.text
-
     feed_gen = FeedGenerator()
     feed_gen.id(url)
-    feed_gen.title(title)
+    if soup.title is not None:
+        text = soup.title.text
+        feed_gen.title(text)
+        feed_gen.description(text)
     feed_gen.link(href=url)
-    feed_gen.description(title)
 
     for feed in sorted(
         map(
@@ -63,13 +63,13 @@ def generate_feed(
 
 
 def generate_feed_by_id(
-    id: UUID,
+    feed_id: UUID,
     cache_provider: CacheProvider,
     fetch_provider: FetchProvider,
     config_provider: ConfigProvider,
     content_type: str = "atom",
 ):
-    config = config_provider.get(id)
+    config = config_provider.get(feed_id)
     return generate_feed(
         url=config.url,
         selector=EntrySelector(

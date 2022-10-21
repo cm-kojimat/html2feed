@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "deploy": "serverless deploy",
-    "format": "poetry run isort src && poetry run black src",
+    "format": "poetry run isort src --profile black && poetry run black src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
