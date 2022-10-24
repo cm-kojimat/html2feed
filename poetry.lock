@@ -81,14 +81,14 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "boto3"
-version = "1.24.95"
+version = "1.24.96"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 
 [package.dependencies]
-botocore = ">=1.27.95,<1.28.0"
+botocore = ">=1.27.96,<1.28.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -97,8 +97,8 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "boto3-stubs"
-version = "1.24.95"
-description = "Type annotations for boto3 1.24.95 generated with mypy-boto3-builder 7.11.10"
+version = "1.24.96"
+description = "Type annotations for boto3 1.24.96 generated with mypy-boto3-builder 7.11.10"
 category = "main"
 optional = false
 python-versions = ">=3.7"
@@ -439,7 +439,7 @@ xray = ["mypy-boto3-xray (>=1.24.0,<1.25.0)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.95"
+version = "1.27.96"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -455,7 +455,7 @@ crt = ["awscrt (==0.14.0)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.27.95"
+version = "1.27.96"
 description = "Type annotations and code completion for botocore"
 category = "main"
 optional = false
@@ -504,11 +504,11 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "dill"
-version = "0.3.5.1"
+version = "0.3.6"
 description = "serialize all of python"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*"
+python-versions = ">=3.7"
 
 [package.extras]
 graph = ["objgraph (>=1.7.2)"]
@@ -714,14 +714,14 @@ test = ["appdirs (==1.4.4)", "pytest (>=6)", "pytest-cov (>=2.7)", "pytest-mock 
 
 [[package]]
 name = "pylint"
-version = "2.15.4"
+version = "2.15.5"
 description = "python code static checker"
 category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 
 [package.dependencies]
-astroid = ">=2.12.11,<=2.14.0-dev0"
+astroid = ">=2.12.12,<=2.14.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
 dill = ">=0.2"
 isort = ">=4.2.5,<6"
@@ -937,20 +937,20 @@ black = [
     {file = "black-22.10.0.tar.gz", hash = "sha256:f513588da599943e0cde4e32cc9879e825d58720d6557062d1098c5ad80080e1"},
 ]
 boto3 = [
-    {file = "boto3-1.24.95-py3-none-any.whl", hash = "sha256:05818ed61af104f28f039592c5c54d802a0398b1f158c2d485ec86352b48033f"},
-    {file = "boto3-1.24.95.tar.gz", hash = "sha256:285d29042c1684f8fc68492ddf20180d28b94aac1f19dd7161bcad3067c01314"},
+    {file = "boto3-1.24.96-py3-none-any.whl", hash = "sha256:748c055214c629744c34c7f94bfa888733dfac0b92e1daef9c243e1391ea4f53"},
+    {file = "boto3-1.24.96.tar.gz", hash = "sha256:6b8899542cff82becceb3498a2240bf77c96def0515b0a31f7f6a9d5b92e7a3d"},
 ]
 boto3-stubs = [
-    {file = "boto3-stubs-1.24.95.tar.gz", hash = "sha256:e347a39aecdcd9c86fac670974bf21961cbc03c296eb2206cd44967239b49c42"},
-    {file = "boto3_stubs-1.24.95-py3-none-any.whl", hash = "sha256:938d6c0670869197c26de0823c6753057a601fc8d7a8b27d6451793bdcf7aa35"},
+    {file = "boto3-stubs-1.24.96.tar.gz", hash = "sha256:8fd7c48fcc54c75a2579565275fee2ee763cb9f862f0edfce896104d0aa9d954"},
+    {file = "boto3_stubs-1.24.96-py3-none-any.whl", hash = "sha256:2a4a24d4a0fdc47d4dc2dcf1c245d378ba79b570be9a8a7dd30217ddf774ac9a"},
 ]
 botocore = [
-    {file = "botocore-1.27.95-py3-none-any.whl", hash = "sha256:04ff12a8d1d0687a1f1c2dfad5b6fc9f5a81de4b639cf9c9e41fee9449680fd4"},
-    {file = "botocore-1.27.95.tar.gz", hash = "sha256:0b90945aa7080179a0c4941a3809ce4df30792931e16b9b6ef3c739c4f2b7a59"},
+    {file = "botocore-1.27.96-py3-none-any.whl", hash = "sha256:e41a81a18511f2f9181b2a9ab302a55c0effecccbef846c55aad0c47bfdbefb9"},
+    {file = "botocore-1.27.96.tar.gz", hash = "sha256:fc0a13ef6042e890e361cf408759230f8574409bb51f81740d2e5d8ad5d1fbea"},
 ]
 botocore-stubs = [
-    {file = "botocore_stubs-1.27.95-py3-none-any.whl", hash = "sha256:0235d152666fbae1996dc797bfdbdf04e8e8f6941b5a280dc4a203cd526e18c5"},
-    {file = "botocore_stubs-1.27.95.tar.gz", hash = "sha256:27bd43c7f29e9217c7c9742df8e08a167bd7d0166a17a4eef5389ab72deafb2f"},
+    {file = "botocore_stubs-1.27.96-py3-none-any.whl", hash = "sha256:4a70b320244752a4dce8239329c9a9cede4a0781e924314f621ec872afe23450"},
+    {file = "botocore_stubs-1.27.96.tar.gz", hash = "sha256:bffbb183adb645a4a6a436c24386f4c33a3f42e422d1fa1bf6b5fb30c5bc0f27"},
 ]
 certifi = [
     {file = "certifi-2022.9.24-py3-none-any.whl", hash = "sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382"},
@@ -969,8 +969,8 @@ colorama = [
     {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
 ]
 dill = [
-    {file = "dill-0.3.5.1-py2.py3-none-any.whl", hash = "sha256:33501d03270bbe410c72639b350e941882a8b0fd55357580fbc873fba0c59302"},
-    {file = "dill-0.3.5.1.tar.gz", hash = "sha256:d75e41f3eff1eee599d738e76ba8f4ad98ea229db8b085318aa2b3333a208c86"},
+    {file = "dill-0.3.6-py3-none-any.whl", hash = "sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0"},
+    {file = "dill-0.3.6.tar.gz", hash = "sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373"},
 ]
 fastjsonschema = [
     {file = "fastjsonschema-2.16.2-py3-none-any.whl", hash = "sha256:21f918e8d9a1a4ba9c22e09574ba72267a6762d47822db9add95f6454e51cc1c"},
@@ -1151,8 +1151,8 @@ platformdirs = [
     {file = "platformdirs-2.5.2.tar.gz", hash = "sha256:58c8abb07dcb441e6ee4b11d8df0ac856038f944ab98b7be6b27b2a3c7feef19"},
 ]
 pylint = [
-    {file = "pylint-2.15.4-py3-none-any.whl", hash = "sha256:629cf1dbdfb6609d7e7a45815a8bb59300e34aa35783b5ac563acaca2c4022e9"},
-    {file = "pylint-2.15.4.tar.gz", hash = "sha256:5441e9294335d354b7bad57c1044e5bd7cce25c433475d76b440e53452fa5cb8"},
+    {file = "pylint-2.15.5-py3-none-any.whl", hash = "sha256:c2108037eb074334d9e874dc3c783752cc03d0796c88c9a9af282d0f161a1004"},
+    {file = "pylint-2.15.5.tar.gz", hash = "sha256:3b120505e5af1d06a5ad76b55d8660d44bf0f2fc3c59c2bdd94e39188ee3a4df"},
 ]
 pyright = [
     {file = "pyright-1.1.276-py3-none-any.whl", hash = "sha256:d9388405ea20a55446cb7809b1746158bdf557f9162b476f5aed71173f4ffd2b"},

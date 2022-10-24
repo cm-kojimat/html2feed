@@ -3,9 +3,13 @@ frameworkVersion: "3"
 
 package:
   patterns:
-    - "!node_modules/**"
-    - "!.venv/**"
+    - "!**.md"
+    - "!**/__pycache__/**"
     - "!.*"
+    - "!.*/**"
+    - "!node_modules/**"
+    - "!scripts/**"
+    - "src/*.py"
 
 plugins:
   - serverless-prune-plugin
@@ -18,6 +22,9 @@ custom:
     dockerizePip: true
     usePoetry: true
     layer: true
+  prune:
+    automatic: true
+    number: 3
 
 provider:
   name: aws
