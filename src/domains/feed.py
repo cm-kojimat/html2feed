@@ -10,8 +10,8 @@ class FeedItem:
         self,
         url: str,
         title: str,
-        updated_at: Optional[datetime] = None,
-        expired_at: Optional[datetime] = None,
+        updated_at: datetime,
+        expired_at: datetime,
     ):
         self.url = url
         self.title = title
@@ -28,7 +28,7 @@ class FeedConfig:
         title_attr: str,
         link_query: str,
         link_attr: str,
-        id: Optional[UUID] = None,
+        feed_id: Optional[UUID] = None,
         created_at: Optional[datetime] = None,
     ):
         self.url = url
@@ -38,10 +38,10 @@ class FeedConfig:
         self.link_query = link_query
         self.link_attr = link_attr
 
-        if id is None:
-            self.id = uuid4()
+        if feed_id is None:
+            self.feed_id = uuid4()
         else:
-            self.id = id
+            self.feed_id = feed_id
         if created_at is None:
             self.created_at = datetime.now(JST)
         else:

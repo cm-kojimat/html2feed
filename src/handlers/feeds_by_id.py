@@ -27,11 +27,11 @@ config_provider = ConfigProvider(table=feeds_config_table)
 def main(event: APIGatewayProxyEvent, context: LambdaContext) -> Dict[str, Any]:
     paths = event["pathParameters"]
 
-    id = paths["feed_id"]
+    feed_id = paths["feed_id"]
     return {
         "statusCode": 200,
         "body": generate_feed_by_id(
-            id=id,
+            feed_id=feed_id,
             cache_provider=cache_provider,
             fetch_provider=fetch_provider,
             config_provider=config_provider,
